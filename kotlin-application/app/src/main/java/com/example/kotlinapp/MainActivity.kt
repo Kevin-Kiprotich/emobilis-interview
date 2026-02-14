@@ -55,7 +55,7 @@ fun MpesaScreen() {
         Button(onClick = {
             scope.launch {
                 message = "Processing payment..."
-                message = `MpesaRepository.kt`.pay(phone, amount)
+                message = MpesaRepository.pay(phone, amount)
             }
         }) {
             Text("Pay with M-Pesa")
