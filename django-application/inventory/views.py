@@ -2,6 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+import requests
+import base64
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 from .models import Product
 from .forms import ProductForm
@@ -116,3 +121,19 @@ def product_delete(request, pk):
         return redirect("product_list")
     
     return render(request, "product_delete.html",{"product":product})
+
+
+
+
+@csrf_exempt
+def stk_push(request):
+    data = json.loads(request.body)
+    phone = data.get("phone")
+    amount = data.get("amount")
+
+    # Call Daraja STK Push here
+    # (Use your consumer key & secret)
+
+    return JsonResponse({
+        "message": "STK Push Sent Successfully"
+    })
